@@ -6,11 +6,17 @@ from rest_framework.generics import ListAPIView,ListCreateAPIView,RetrieveAPIVie
 # Create your views here.
 
 class AgentListView(ListAPIView):
-    permission_classes=(permissions.AlloyAny)
+    permission_classes=(permissions.AllowAny,)
     queryset=Agent.objects.all()
-    serializer=AgentSerializer
+    serializer_class=AgentSerializer
     pagination_class=None
 
 class AgentDetailView(RetrieveAPIView):
     queryset=Agent.objects.all()
     serializer_class=AgentSerializer
+
+class TopSellerListView(ListAPIView):
+    permission_classes=(permissions.AllowAny,)
+    queryset = Agent.objects.filter(top_seller=True)
+    serializer_class=AgentSerializer
+    pagination_class=None
