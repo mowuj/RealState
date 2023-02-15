@@ -8,15 +8,17 @@ class HomeSerializer(serializers.ModelSerializer):
                 'bathrooms','sqft',
                 'city','state',
                 'zipcode','address',
-                'sell_type','home_type',
+                'sale_type','home_type',
                 'price')
 
 class HomeDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model=Home
         fields='__all__'
+        lookup_field='slug'
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model=ImageFiles
         fields='__all__'
+        lookup_field='home'
